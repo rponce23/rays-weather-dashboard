@@ -9,7 +9,7 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
-    <header class="container-fluid bg-primary text-center text-light mb-5 p-3">
+    <header class="container-fluid bg-primary text-center text-light mb-3 p-3">
         <h1 class="titu">Weather Dashboard</h1>
     </header>
 
@@ -20,20 +20,68 @@
                     <h3>Search for a City</h3>
                     <form>
                         <div class="col-10 d-flex flex-rw">
-                            <input type="text" class="form-control" id="cityname" placeholder="City Name">
+                            <div>
+                                <input type="text" class="form-control" id="citysearch" placeholder="City Name">
+                            </div>
 
-                            <button class="btn btn-primary" id="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <div>
+                                <button class="btn btn-primary" id="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                               </svg></button>
-                            
+                            </div>
+                        </div>
+                        <div class="my-3 cityStored">
+                            <h4>Here goes the cities stored</h4>
                         </div>
                         
-                        
                     </form>
-
                 </div>
-
             </div>
+        </section>
+
+        <section>
+            <div class="border border-primary mx-3 p-3 w-100 showdata">
+                <div class="city">
+                    <h2>Merida</h2>
+                </div>
+                <div>
+                    <h4>Temperature</h4>
+                </div>
+                <div>
+                    <h4>Humidity</h4>
+                </div>
+                <div>
+                    <h4>Wind Speed</h4>
+                </div>
+                <div>
+                    <h4>UV Index</h4>
+                </div>
+            </div>
+
+            <div class="p-3 forecast">
+                <h3>5 Day Forecast:</h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="p-3 col">
+                        1 of 3
+                        </div>
+                        <div class="p-3 col">
+                        2 of 3
+                        </div>
+                        <div class="p-3 col">
+                        3 of 3
+                        </div>
+                        <div class="p-3 col">
+                        4 of 3
+                        </div>
+                        <div class="p-3 col">
+                        5 of 3
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+
 
         </section>
 
