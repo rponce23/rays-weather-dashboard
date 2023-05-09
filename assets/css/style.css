@@ -17,6 +17,14 @@ main{
     height: 500px;
 }
 
-.showdata{
-    /* width: 600%; */
+
+.cardBody{
+    height: 220px;
+    background-color: rgb(45, 45, 59);
+    color:antiquewhite;
+    margin: 10px;
+}
+
+.card{
+    width: 600px;
 }
