@@ -1,15 +1,22 @@
+var searchButton = $("#buttonSearch");
+
 var APIKey = "dcd22140f5df86c3f85a475b3f9dad9e";
-var city = 'Monterrey';
-var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q='+ city +'&appid='+ APIKey;
 
-var testQuery = function(){
-    fetch(queryURL)
-    .then(function(response){
+
+$(function(){
+    searchButton.click(function(event){
+        event.preventDefault();
+        var cityName = $("#citysearch").val();
+        var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q='+ cityName +'&appid='+ APIKey + '&units=metric';
+        console.log(queryURL);
+        fetch(queryURL)
+        .then(function(response){
         return response.json();
-    })
-    .then(function (data) {
+        })
+        .then(function (data) {
         console.log(data);
-      });
-};
+        });
+        
+    });
 
-testQuery();
+});
