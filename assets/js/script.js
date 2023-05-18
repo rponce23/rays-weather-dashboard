@@ -9,13 +9,22 @@ $(function(){
         var cityName = $("#citysearch").val();
         var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q='+ cityName +'&appid='+ APIKey + '&units=metric';
         console.log(queryURL);
-        fetch(queryURL)
-        .then(function(response){
-        return response.json();
+        
+        fetch(queryURL).then(function(response){
+        return response.json().then(function(data){
+            console.log(data);
+            $('#cityName').html(data.name);
+            $('#currentDate').html(dayjs.unix(data.dt).format('MMM D, YYYY'));
+            var wicon = data.weather[0].icon;
+            var iconURL = "https://openweathermap.org/img/wn/" + wicon + "@2x.png";
+            $('#currentIcon').attr("src", iconURL);
         })
-        .then(function (data) {
-        console.log(data);
-        });
+        
+        
+        })
+       
+
+        
         
     });
 

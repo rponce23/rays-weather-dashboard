@@ -28,3 +28,7 @@ main{
 .card{
     width: 600px;
 }
+
+.weather-icon{
+    background-color: rgb(209, 189, 151);
+}
