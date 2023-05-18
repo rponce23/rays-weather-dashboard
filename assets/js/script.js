@@ -18,6 +18,10 @@ $(function(){
             var wicon = data.weather[0].icon;
             var iconURL = "https://openweathermap.org/img/wn/" + wicon + "@2x.png";
             $('#currentIcon').attr("src", iconURL);
+            $('#currentTemp').html("Temperature: " + data.main.temp);
+            $('#currentHum').html("Humidity: " + data.main.humidity);
+            $('#currentWind').html("Wind Speed: " + data.wind.speed);
+            
         })
         
         
