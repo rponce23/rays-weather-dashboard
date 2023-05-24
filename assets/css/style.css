@@ -31,4 +31,6 @@ main{
 
 .weather-icon{
     background-color: rgb(116, 116, 242);
+    font-size: 2em;
 }
+

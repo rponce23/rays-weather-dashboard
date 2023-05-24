@@ -21,14 +21,8 @@ $(function(){
             $('#currentWind').html("Wind Speed: " + data.wind.speed + " Km/h");
             var lon = data.coord.lon;
             var lat = data.coord.lat;
-            // var lon = '10.99';
-            // var lat = '44.34';
-
-            var coordcity = lat.toString() + " " + lon.toString();
 
             forecastWeather(lat, lon);
-
-
             })
         })
     });
@@ -40,12 +34,25 @@ function forecastWeather(lat, lon){
     fetch(forecastURL).then(function(response){
         return response.json().then(function(fdata){
             console.log(fdata);
-            for(var i=1; i<6; i++){
-
+            
+            for(var i=0; i<fdata.list.length; i=i+8){
+                var date = dayjs.unix(fdata.list[i].dt).format('MMM D, YYYY');
+                console.log(date);
+                console.log(i);
+                $('#fday'+ i).html(date);
+                
+                var fwicon = fdata.list[i].weather[0].icon;
+                var ficonURL = "https://openweathermap.org/img/wn/" + fwicon + "@2x.png";
+                $('#forecastIcon'+i).attr("src", ficonURL);
+                $('#forecastTemp'+ i).html("Temp: "+ fdata.list[i].main.temp+ " °C");
+                $('#forecastWind'+ i).html("Wind : "+ fdata.list[i].wind.speed + " Km/h");
+                $('#forecastHum'+ i).html("Humidity : "+ fdata.list[i].main.humidity + " %")
             }
-
         })
     })
 }
 
+function storeData(city){
+    localStorage.setItem("cityNames", city)
+}
 
