@@ -1,7 +1,8 @@
 var searchButton = $("#buttonSearch");
+var cityToStore = $('#cityStored')
 var APIKey = "dcd22140f5df86c3f85a475b3f9dad9e";
 
-$(function(){
+function searchCity(){
     searchButton.click(function(event){
         event.preventDefault();
         var cityName = $("#citysearch").val();
@@ -23,22 +24,24 @@ $(function(){
             var lat = data.coord.lat;
 
             forecastWeather(lat, lon);
+            storeData(data.name);
+
             })
         })
     });
 
-});
+};
 
 function forecastWeather(lat, lon){
     var forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid='+ APIKey + '&units=metric';
     fetch(forecastURL).then(function(response){
         return response.json().then(function(fdata){
-            console.log(fdata);
+            // console.log(fdata);
             
             for(var i=0; i<fdata.list.length; i=i+8){
                 var date = dayjs.unix(fdata.list[i].dt).format('MMM D, YYYY');
-                console.log(date);
-                console.log(i);
+                // console.log(date);
+                // console.log(i);
                 $('#fday'+ i).html(date);
                 
                 var fwicon = fdata.list[i].weather[0].icon;
@@ -53,6 +56,17 @@ function forecastWeather(lat, lon){
 }
 
 function storeData(city){
+    var cityts = localStorage.getItem("cityNames")
     localStorage.setItem("cityNames", city)
+    console.log(cityts)
+    var test = $('<button/>',
+    {
+        text: 'Test',
+        click: function () { alert('hi'); }
+    })
+    cityToStore.append(test);
 }
 
+
+
+searchCity();
