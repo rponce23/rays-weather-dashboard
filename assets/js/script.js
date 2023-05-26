@@ -14,8 +14,8 @@ function searchCity(){
         fetch(queryURL).then(function(response){
         return response.json().then(function(data){
             // console.log(data);
-            var newcity = data.name;
-            console.log(newcity);
+            // var newcity = data.name;
+            // console.log(newcity);
             $('#cityName').html(data.name);
             $('#currentDate').html(dayjs.unix(data.dt).format('MMM D, YYYY'));
             var wicon = data.weather[0].icon;
@@ -60,27 +60,21 @@ function forecastWeather(lat, lon){
 }
 
 function storeData(city){
-    var cityts = localStorage.getItem("cityNames");
     localStorage.setItem("cityNames", city);
-    console.log(cityts);
+    var cityts = localStorage.getItem("cityNames");
+    console.log("a: "+cityts);
+    var buttonsc = $('<button>', 
+    {text:(cityts), 
+    click: function(event){
+        event.preventDefault();
+        buttonsc.val(cityts);
+        console.log("b: "+ cityts);
+        $("#citysearch").val(buttonsc.val());
+        // Agregar funcion para traer los datos de nuevo
+        }
+    })
+    cityToStore.append(buttonsc);
 }
-
-_________________
-if (storedCities !== null) {
-    array=storedCities;
-    for(let i=0; i<storedCities.length; i++){ 
-      cities.innerHTML+=`<button class="bg-slate-700 rounded-lg my-2 py-1 text-white hover:opacity-75" id="${storedCities[i]}">${storedCities[i]}</button>` 
-  }  
-  }
-
-  cities.addEventListener("click", function(event){ 
-    if(event.target !== event.currentTarget){ 
-        city = event.target.id; 
-        geoUrl = "https://api.tomtom.com/search/2/geocode/"+city+".json?key=IWlwFtnFKKA6voxvGd7uWEcCNXeuXtI4&entityTypeSet=Municipality&countrySet=MX"
-        tomtomGeocoding(geoUrl)
-    }
-  })
-
 
 
 searchCity();
