@@ -1,8 +1,7 @@
 var searchButton = $("#buttonSearch");
 var cityToStore = $('#cityStored')
 var APIKey = "dcd22140f5df86c3f85a475b3f9dad9e";
-var storedCities = JSON.parse(localStorage.getItem("city"));
-var array=[];
+
 
 function searchCity(){
     searchButton.click(function(event){
@@ -71,10 +70,39 @@ function storeData(city){
         console.log("b: "+ cityts);
         $("#citysearch").val(buttonsc.val());
         // Agregar funcion para traer los datos de nuevo
+        lookAgainCity();
         }
     })
     cityToStore.append(buttonsc);
 }
+
+
+function lookAgainCity(){
+    var cityName = $("#citysearch").val();
+    var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q='+ cityName +'&appid='+ APIKey + '&units=metric';
+    // console.log(queryURL);
+    
+    fetch(queryURL).then(function(response){
+    return response.json().then(function(data){
+        // console.log(data);
+        // var newcity = data.name;
+        // console.log(newcity);
+        $('#cityName').html(data.name);
+        $('#currentDate').html(dayjs.unix(data.dt).format('MMM D, YYYY'));
+        var wicon = data.weather[0].icon;
+        var iconURL = "https://openweathermap.org/img/wn/" + wicon + "@2x.png";
+        $('#currentIcon').attr("src", iconURL);
+        $('#currentTemp').html("Temperature: " + data.main.temp + " °C");
+        $('#currentHum').html("Humidity: " + data.main.humidity + " %");
+        $('#currentWind').html("Wind Speed: " + data.wind.speed + " Km/h");
+        var lon = data.coord.lon;
+        var lat = data.coord.lat;
+
+        forecastWeather(lat, lon);
+
+        })
+    })
+};
 
 
 searchCity();
