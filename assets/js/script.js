@@ -63,7 +63,8 @@ function storeData(city){
     var cityts = localStorage.getItem("cityNames");
     console.log("a: "+cityts);
     var buttonsc = $('<button>', 
-    {text:(cityts), 
+    {text:(cityts),
+    class:"btn btn-success my-1",    
     click: function(event){
         event.preventDefault();
         buttonsc.val(cityts);
